@@ -57,7 +57,7 @@ exit /b 0
 	if %4. equ 0. (set status=online) else set status=offline
 	:main
 		ping %1.%num% -n 1 -w 200>nul
-		if %errorlevel% equ %4 echo.%1.%num% : !status!
+		if %errorlevel% equ %4 echo.%1.%num% : %status%
 		set /a num+=1
 	if %num% leq %3 goto main
 goto :eof
