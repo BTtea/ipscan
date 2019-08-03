@@ -2,7 +2,7 @@
 setlocal EnableDelayedExpansion
 if %1. equ . (
 	echo.
-	echo.	use : ipscan [ -on ^| -off ] [ -a [n.n.n.n] ^| -m [n.n.n] [start_number] [end_number] ]
+	echo.	Use : ipscan [ -on ^| -off ] [ -a [n.n.n.n] ^| -m [n.n.n] [start_number] [end_number] ]
 	echo.
 	echo.	You can replace n with * , and the range of * is 1~254.
 	echo.
@@ -12,7 +12,7 @@ if %1. equ . (
 	echo.		-a      Only one set of data.
 	echo.		-m      Multiple data.
 	echo.
-	echo.	example : 
+	echo.	Example : 
 	echo.
 	echo.		ipscan -a 192.168.1.1
 	echo.
