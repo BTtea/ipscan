@@ -25,7 +25,6 @@ if %1. equ . (
 )
 set flag=0
 :parmLoop
-	if %1. equ . exit /b 0
 	if "%1" equ "-on" (
 	    set flag=0
 	    shift /1
