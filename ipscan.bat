@@ -63,6 +63,10 @@ set output=
 		set filename=%2
 	    for /l %%a in (1,1,2) do shift /1
 		goto parmLoop
+	) else (
+		echo.Parameter error.
+		echo.Please input ^<ipscan^> to see how to use it.
+		exit /b 0
 	)
 if %1. neq . goto parmLoop
 exit /b 0
