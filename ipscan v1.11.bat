@@ -2,7 +2,7 @@
 setlocal EnableDelayedExpansion
 if %1. equ . (
 	echo.
-	echo.	use : ipscan [ -on ^| -off ^| -all ] [ -o [path] ]
+	echo.	use : %~n0 [ -on ^| -off ^| -all ] [ -o [path] ]
 	echo.		  [ -a [n.n.n.n] ^| -m [n.n.n] [start_number] [end_number] ]
 	echo.
 	echo.	You can replace n with * , and the number which is in range from 1 to 254.
@@ -17,17 +17,17 @@ if %1. equ . (
 	echo.
 	echo.	example : 
 	echo.
-	echo.		ipscan -a 192.168.1.1
+	echo.		%~n0 -a 192.168.1.1
 	echo.
-	echo.		ipscan -on -a 192.168.1.*
+	echo.		%~n0 -on -a 192.168.1.*
 	echo.
-	echo.		ipscan -off -m 192.168.1 1 5
+	echo.		%~n0 -off -m 192.168.1 1 5
 	echo.
-	echo.		ipscan -all -m 192.168.1 1 5
+	echo.		%~n0 -all -m 192.168.1 1 5
 	echo.
-	echo.		ipscan -on -m 192.168.1 1 5 -off -m 192.168.1 6 10
+	echo.		%~n0 -on -m 192.168.1 1 5 -off -m 192.168.1 6 10
 	echo.
-	echo.		ipscan -o "C:\output.txt" -on -a 192.168.1.*
+	echo.		%~n0 -o "C:\output.txt" -on -a 192.168.1.*
 	exit /b 0
 )
 set flag=0
@@ -64,8 +64,9 @@ set output=
 	    for /l %%a in (1,1,2) do shift /1
 		goto parmLoop
 	) else (
+		if %1. equ . exit /b 0
 		echo.Parameter error.
-		echo.Please input ^<ipscan^> to see how to use it.
+		echo.Please input ^<%~n0^> to see how to use it.
 		exit /b 0
 	)
 if %1. neq . goto parmLoop
