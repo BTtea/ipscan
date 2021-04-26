@@ -30,8 +30,9 @@ if %1. equ . (
 	echo.		%~n0 -o "C:\output.txt" -on -a 192.168.1.*
 	exit /b 0
 )
+setlocal
 set flag=0
-set output=
+set "output="
 :parmLoop
 	if "%1" equ "-on" (
 	    set flag=0
@@ -50,12 +51,12 @@ set output=
 			if "%%d" equ "*" call :scan %%a.%%b.%%c 1 254 !flag! !output! !filename!
 			if "%%d" neq "*" call :scan %%a.%%b.%%c %%d %%d !flag! !output! !filename!
 		)
-		set output=
+		set "output="
 		for /l %%a in (1,1,2) do shift /1
 		goto parmLoop
 	) else if "%1" equ "-m" (
 		call :scan %2 %3 %4 !flag! !output! !filename!
-		set output=
+		set "output="
 		for /l %%a in (1,1,4) do shift /1
 		goto parmLoop
 	) else if "%1" equ "-o" (
@@ -67,12 +68,15 @@ set output=
 		if %1. equ . exit /b 0
 		echo.Parameter error.
 		echo.Please input ^<%~n0^> to see how to use it.
+		endlocal
 		exit /b 0
 	)
 if %1. neq . goto parmLoop
+endlocal
 exit /b 0
 
 :scan
+	setlocal
 	set num=%2
 	set all=rem
 	set not_all=rem
@@ -95,4 +99,5 @@ exit /b 0
 		%all% )
 		set /a num+=1
 	if %num% leq %3 goto main
+	endlocal
 goto :eof
