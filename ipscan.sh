@@ -1,12 +1,17 @@
 #!bin/bash
-function Using(){
-    echo -e "
-    ██╗██████╗ ███████╗ ██████╗ █████╗ ███╗   ██╗███╗   ██╗███████╗██████╗ 
+function logo(){
+	
+	echo -e "
+\n    ██╗██████╗ ███████╗ ██████╗ █████╗ ███╗   ██╗███╗   ██╗███████╗██████╗ 
     ██║██╔══██╗██╔════╝██╔════╝██╔══██╗████╗  ██║████╗  ██║██╔════╝██╔══██╗
     ██║██████╔╝███████╗██║     ███████║██╔██╗ ██║██╔██╗ ██║█████╗  ██████╔╝
     ██║██╔═══╝ ╚════██║██║     ██╔══██║██║╚██╗██║██║╚██╗██║██╔══╝  ██╔══██╗
     ██║██║     ███████║╚██████╗██║  ██║██║ ╚████║██║ ╚████║███████╗██║  ██║
-    ╚═╝╚═╝     ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝\n
+    ╚═╝╚═╝     ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝
+	"
+}
+function Using(){
+    echo -e "
     usage : ipscan [ -on | -off ] [ -a [n.n.n.n] | -m [n.n.n] [start_number] [end_number] ]\n
      You can replace n with x , and the range of x is 1~254.\n
      	Option :\n
@@ -34,7 +39,6 @@ function Scan(){
 }
 
 function GetData(){
-    MyWANIP="?.?.?.?"
     GateWay=`route -n | grep 'UG[ \t]' | awk '{print $2}'`
     MyLANIP=`hostname -I`
     MyWANIP=`dig +short myip.opendns.com @resolver1.opendns.com`
@@ -75,5 +79,6 @@ function parmLoop(){
     done
 }
 
+logo
 [ "$1" == "" ] && Using || parmLoop $*
 exit 0
